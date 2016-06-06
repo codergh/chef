@@ -1542,8 +1542,9 @@ class Chef
       end
     end
 
-    def self.deprecated_constants
-      @deprecated_constants ||= {}
+    @@deprecated_constants = {}
+    def deprecated_constants
+      @deprecated_constants
     end
 
     # @api private

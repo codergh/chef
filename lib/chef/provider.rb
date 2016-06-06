@@ -444,8 +444,9 @@ class Chef
 
       private
 
+      @@deprecated_constants = {}
       def deprecated_constants
-        @deprecated_constants ||= {}
+        @@deprecated_constants
       end
     end
     extend DeprecatedLWRPClass
