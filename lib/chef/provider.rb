@@ -435,7 +435,7 @@ class Chef
       def register_deprecated_lwrp_class(provider_class, class_name)
         # Register Chef::Provider::MyProvider with deprecation warnings if you
         # try to access it
-        if Chef::Provider.const_defined?(class_name, false)
+        if Chef::Provider.const_defined?(class_name)
           Chef::Log.warn "Chef::Provider::#{class_name} already exists!  Cannot create deprecation class for #{provider_class}"
         else
           deprecated_constants[class_name.to_sym] = provider_class
@@ -444,9 +444,9 @@ class Chef
 
       private
 
-      @@deprecated_constants = {}
+      #@@deprecated_constants = {}
       def deprecated_constants
-        @@deprecated_constants
+        @deprecated_constants ||= {}
       end
     end
     extend DeprecatedLWRPClass

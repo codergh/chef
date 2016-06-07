@@ -1531,7 +1531,7 @@ class Chef
 
     # @api private
     def self.register_deprecated_lwrp_class(resource_class, class_name)
-      if Chef::Resource.const_defined?(class_name, false)
+      if Chef::Resource.const_defined?(class_name)
         Chef::Log.warn "#{class_name} already exists!  Deprecation class overwrites #{resource_class}"
         Chef::Resource.send(:remove_const, class_name)
       end
@@ -1542,9 +1542,9 @@ class Chef
       end
     end
 
-    @@deprecated_constants = {}
+    #@@deprecated_constants = {}
     def deprecated_constants
-      @deprecated_constants
+      @deprecated_constants ||= {}
     end
 
     # @api private
